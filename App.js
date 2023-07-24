@@ -11,7 +11,10 @@ export default function App() {
       <Pressable onPress={() => console.log('Image pressed')}>
         <Image source={Logo} style={{ width: 300, height: 300 }} />
       </Pressable>
-      <Pressable onPress={() => console.log('Text pressed')}>
+      <Pressable
+        onLongPress={() => console.log('Text pressed')}
+        onPressOut={() => console.log('Long press out')}
+      >
         <Text>
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making

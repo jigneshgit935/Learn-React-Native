@@ -1,19 +1,12 @@
-import {
-  Button,
-  Image,
-  Modal,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-  StatusBar,
-} from 'react-native';
-import Logo from '../reactNative/assets/adaptive-icon.png';
-import { useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+
 export default function App() {
   return (
     <View style={{ flex: 1, backgroundColor: 'plum', padding: 60 }}>
-      <StatusBar backgroundColor="lightgreen" barStyle="dark-content" />
+      <ActivityIndicator />
+      <ActivityIndicator size={50} />
+      <ActivityIndicator size={50} color="red" />
+      <ActivityIndicator size={50} color="blue" animating={false} />
     </View>
   );
 }

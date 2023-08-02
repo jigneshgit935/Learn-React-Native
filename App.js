@@ -20,8 +20,14 @@ const styles = StyleSheet.create({
     padding: 60,
   },
   boxwith: {
-    width: '100%',
-    height: 200,
+    width: 100,
+    height: 100,
+    paddingHorizontal: 10,
+    paddingVertical: 30,
+    marginVertical: 10,
+    borderWidth: 2,
+    borderColor: 'purple',
+    borderRadius: 40,
   },
   lightbluebox: {
     backgroundColor: 'red',

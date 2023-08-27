@@ -1,55 +1,20 @@
 import { StyleSheet, Text, View } from 'react-native';
+import Box from './components/Box';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.darkmode}>
-        <Text style={styles.darkmodeText}>
-          Inheritance in stylehseet <Text style={styles.textBold}>in Bold</Text>
-        </Text>
-      </View>
-      <View style={[styles.boxwith, styles.lightbluebox, styles.boxShadow]}>
-        <Text>Lightblue box</Text>
-      </View>
-      <View style={[styles.boxwith, styles.lightgreenbox, styles.boxShadow]}>
-        <Text>Lightgreen box</Text>
-      </View>
+      <Box style={{ backgroundColor: '#8e9b00' }}>Box 1</Box>
+      <Box style={{ backgroundColor: '#b65d1f' }}>Box 2</Box>
+      <Box style={{ backgroundColor: '#1c4c56' }}>Box 3</Box>
+      <Box style={{ backgroundColor: '#ab9156' }}>Box 4</Box>
+      <Box style={{ backgroundColor: '#6b0803' }}>Box 5</Box>
+      <Box style={{ backgroundColor: '#1c4c56' }}>Box 6</Box>
+      <Box style={{ backgroundColor: '#b95f21' }}>Box 7</Box>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'plum',
-    padding: 60,
-  },
-  darkmode: {
-    backgroundColor: 'black',
-  },
-  darkmodeText: {
-    color: 'white',
-  },
-  textBold: {
-    fontWeight: 'bold',
-  },
-  boxwith: {
-    width: 250,
-    height: 250,
-    paddingHorizontal: 10,
-    paddingVertical: 30,
-    marginVertical: 10,
-    borderWidth: 2,
-    borderColor: 'purple',
-    borderRadius: 40,
-  },
-  boxShadow: {
-    elevation: 50,
-  },
-  lightbluebox: {
-    backgroundColor: 'red',
-  },
-  lightgreenbox: {
-    backgroundColor: 'green',
-  },
+  container: { marginTop: 64, borderWidth: 6, borderColor: 'red' },
 });

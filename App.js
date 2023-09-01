@@ -5,7 +5,9 @@ export default function App() {
   return (
     // <View style={{ backgroundColor: 'plum', flex: 1 }}></View>
     <View style={styles.container}>
-      <Box style={{ backgroundColor: '#8e9b00' }}>Box 1</Box>
+      <Box style={{ backgroundColor: '#8e9b00', paddingVertical: 100 }}>
+        Box 1
+      </Box>
       <Box style={{ backgroundColor: '#b65d1f' }}>Box 2</Box>
       <Box style={{ backgroundColor: '#1c4c56' }}>Box 3</Box>
       {/* <Box style={{ backgroundColor: '#ab9156' }}>Box 4</Box>
@@ -19,12 +21,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'flex-start',
-    // justifyContent: 'flex-end',
-    // justifyContent: 'center',
-    // justifyContent: 'space-around',
-    // justifyContent: 'space-between',
-    justifyContent: 'space-evenly',
+    // alignItems: 'stretch',
+    // alignItems: 'flex-start',
+    // alignItems: 'flex-end',
+    // alignItems: 'center',
+    alignItems: 'baseline',
     flexDirection: 'row',
     marginTop: 64,
     borderWidth: 6,

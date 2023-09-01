@@ -18,13 +18,16 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    // justifyContent: 'flex-start',
+    // justifyContent: 'flex-end',
+    // justifyContent: 'center',
+    // justifyContent: 'space-around',
+    // justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
     marginTop: 64,
     borderWidth: 6,
     borderColor: 'red',
-    flex: 1,
-    // flexDirection: 'column-reverse',
-    // flexDirection: 'column',
-    // flexDirection: 'row',
-    flexDirection: 'row-reverse',
   },
 });

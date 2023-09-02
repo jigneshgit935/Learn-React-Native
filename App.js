@@ -8,7 +8,7 @@ const App = () => {
       <View style={styles.container}>
         <View style={styles.box}>
           <Text style={styles.text}>Welcome!</Text>
-          <CustomButton title="Press me" onPress={() => alert('Pressed!')} />
+          <CustomButton title="Press me" onPress={() => alert('Pressed!!')} />
         </View>
       </View>
     </SafeAreaView>

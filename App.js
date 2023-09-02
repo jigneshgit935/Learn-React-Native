@@ -19,11 +19,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    height: 300,
+    height: 360,
     flexWrap: 'wrap',
-    // alignContent: 'center',
-    // alignContent: 'space-between',
-    alignContent: 'space-around',
+    // rowGap: 20,
+    // columnGap: 20,
+    gap: 22,
+    alignContent: 'center',
     marginTop: 64,
     borderWidth: 6,
     borderColor: 'red',

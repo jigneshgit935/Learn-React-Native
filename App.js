@@ -18,13 +18,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // height: 300,
-    flex: 1,
-    // flexWrap: 'wrap',
-    // flexWrap: 'nowrap',
-    flexDirection: 'row',
-    flexWrap: 'wrap-reverse',
-
+    // flex: 1,
+    height: 300,
+    flexWrap: 'wrap',
+    // alignContent: 'center',
+    // alignContent: 'space-between',
+    alignContent: 'space-around',
     marginTop: 64,
     borderWidth: 6,
     borderColor: 'red',

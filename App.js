@@ -1,35 +1,36 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Box from './components/Box';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
-export default function App() {
+const App = () => {
   return (
-    // <View style={{ backgroundColor: 'plum', flex: 1 }}></View>
     <View style={styles.container}>
-      <Box style={{ backgroundColor: '#8e9b00', top: 75, left: 75 }}>Box 1</Box>
-      <Box style={{ backgroundColor: '#b65d1f' }}>Box 2</Box>
-      <Box style={{ backgroundColor: '#1c4c56' }}>Box 3</Box>
-      <Box
-        style={{
-          backgroundColor: '#ab9156',
-          position: 'absolute',
-          top: 100,
-          left: 100,
-        }}
-      >
-        Box 4
-      </Box>
-      <Box style={{ backgroundColor: '#6b0803' }}>Box 5</Box>
-      <Box style={{ backgroundColor: '#1c4c56' }}>Box 6</Box>
-      <Box style={{ backgroundColor: '#b95f21' }}>Box 7</Box>
+      <View style={styles.box}>
+        <Text style={styles.text}>Welcome!</Text>
+      </View>
     </View>
   );
-}
+};
+
+export default App;
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 64,
-    borderWidth: 6,
-    borderColor: 'red',
+    backgroundColor: 'plum',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  box: {
+    width: windowWidth > 500 ? '70%' : '90%',
+    height: windowHeight > 600 ? '60%' : '90%',
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: windowWidth > 500 ? 50 : 24,
   },
 });

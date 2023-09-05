@@ -1,25 +1,25 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import pokemonList from './data.json';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.ScrollView}>
-        <View>
-          <Text style={styles.textPokemon}>Pokemon List</Text>
-        </View>
-        <View>
-          {pokemonList.map((pokemon) => {
+      <View style={styles.ScrollView}>
+        <Text style={styles.textPokemon}>Pokemon List</Text>
+        <FlatList
+          data={pokemonList}
+          renderItem={({ item }) => {
             return (
-              <View style={styles.card} key={pokemon.id}>
-                <Text style={styles.cardText}>Type: {pokemon.type}</Text>
-                <Text style={styles.cardText}>Name: {pokemon.name}</Text>
+              <View style={styles.card} key={item.id}>
+                <Text style={styles.cardText}>Type: {item.type}</Text>
+                <Text style={styles.cardText}>Name: {item.name}</Text>
               </View>
             );
-          })}
-        </View>
-      </ScrollView>
+          }}
+          keyExtractor={(item, index) => item.id.toString()}
+        />
+      </View>
     </SafeAreaView>
   );
 };

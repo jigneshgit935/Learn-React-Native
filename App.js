@@ -6,9 +6,8 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.ScrollView}>
-        <Text style={styles.textPokemon}>Pokemon List</Text>
         <FlatList
-          data={[]}
+          data={pokemonList}
           renderItem={({ item }) => {
             return (
               <View style={styles.card} key={item.id}>
@@ -21,6 +20,12 @@ const App = () => {
           ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
           ListEmptyComponent={
             <Text style={styles.emptyText}>No Items Found</Text>
+          }
+          ListHeaderComponent={
+            <Text style={styles.textPokemon}>Pokemon List</Text>
+          }
+          ListFooterComponent={
+            <Text style={styles.textPokemon}>End of List</Text>
           }
         />
       </View>

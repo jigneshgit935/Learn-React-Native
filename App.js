@@ -8,7 +8,7 @@ const App = () => {
       <View style={styles.ScrollView}>
         <Text style={styles.textPokemon}>Pokemon List</Text>
         <FlatList
-          data={pokemonList}
+          data={[]}
           renderItem={({ item }) => {
             return (
               <View style={styles.card} key={item.id}>
@@ -19,6 +19,9 @@ const App = () => {
           }}
           keyExtractor={(item) => item.id.toString()}
           ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
+          ListEmptyComponent={
+            <Text style={styles.emptyText}>No Items Found</Text>
+          }
         />
       </View>
     </SafeAreaView>
@@ -49,5 +52,11 @@ const styles = StyleSheet.create({
   textPokemon: {
     fontSize: 35,
     paddingVertical: 10,
+    textAlign: 'center',
+  },
+  emptyText: {
+    fontSize: 25,
+    textAlign: 'center',
+    paddingVertical: 20,
   },
 });

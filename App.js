@@ -1,52 +1,24 @@
-import { StyleSheet, View } from 'react-native';
-import PokemonCard from './Compoents/PokemonCard';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import pokemonList from './data.json';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native';
 
 const App = () => {
-  const charmanderData = {
-    name: 'Charmander',
-    image: require('./assets/charmander.png'),
-    type: 'Fire',
-    hp: 39,
-    moves: ['Scratch', 'Ember', 'Growl', 'Leer'],
-    weaknesses: ['Water', 'Rock'],
-  };
-
-  const squirtleData = {
-    name: 'Squirtle',
-    image: require('./assets/squirtle.png'),
-    type: 'Water',
-    hp: 44,
-    moves: ['Tackle', 'Water Gun', 'Tail Whip', 'Withdraw'],
-    weaknesses: ['Electric', 'Grass'],
-  };
-
-  const bulbasaurData = {
-    name: 'Bulbasaur',
-    image: require('./assets/bulbasaur.png'),
-    type: 'Grass',
-    hp: 45,
-    moves: ['Tackle', 'Vine Whip', 'Growl', 'Leech Seed'],
-    weaknesses: ['Fire', 'Ice', 'Flying', 'Psychic'],
-  };
-
-  const pikachuData = {
-    name: 'Pikachu',
-    image: require('./assets/pikachu.png'),
-    type: 'Electric',
-    hp: 35,
-    moves: ['Quick Attack', 'Thunderbolt', 'Tail Whip', 'Growl'],
-    weaknesses: ['Ground'],
-  };
-
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <PokemonCard {...charmanderData} />
-        <PokemonCard {...squirtleData} />
-        <PokemonCard {...bulbasaurData} />
-        <PokemonCard {...pikachuData} />
+      <ScrollView style={styles.ScrollView}>
+        <View>
+          <Text style={styles.textPokemon}>Pokemon List</Text>
+        </View>
+        <View>
+          {pokemonList.map((pokemon) => {
+            return (
+              <View style={styles.card} key={pokemon.id}>
+                <Text style={styles.cardText}>Type: {pokemon.type}</Text>
+                <Text style={styles.cardText}>Name: {pokemon.name}</Text>
+              </View>
+            );
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -58,5 +30,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  ScrollView: {
+    paddingHorizontal: 16,
+  },
+
+  card: {
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    marginBottom: 16,
+  },
+  cardText: {
+    fontSize: 25,
+  },
+  textPokemon: {
+    fontSize: 35,
+    paddingVertical: 10,
   },
 });

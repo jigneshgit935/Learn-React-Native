@@ -1,58 +1,18 @@
-import {
-  FlatList,
-  ScrollView,
-  SectionList,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import pokemonList from './data.json';
-import groupedPokemonList from './data.json';
+import { useState } from 'react';
+import { StyleSheet, Text, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
+  const [name, setName] = useState('');
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={styles.ScrollView}>
-        <FlatList
-          data={pokemonList}
-          renderItem={({ item }) => {
-            return (
-              <View style={styles.card} key={item.id}>
-                <Text style={styles.cardText}>Type: {item.type}</Text>
-                <Text style={styles.cardText}>Name: {item.name}</Text>
-              </View>
-            );
-          }}
-          keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
-          ListEmptyComponent={
-            <Text style={styles.emptyText}>No Items Found</Text>
-          }
-          ListHeaderComponent={
-            <Text style={styles.textPokemon}>Pokemon List</Text>
-          }
-          ListFooterComponent={
-            <Text style={styles.textPokemon}>End of List</Text>
-          }
-        />
-      </View> */}
-
-      <SectionList
-        sections={groupedPokemonList}
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.card}>
-              <Text style={styles.cardText}>{item}</Text>
-            </View>
-          );
-        }}
-        renderSectionHeader={({ section }) => (
-          <Text style={styles.sectionHeaderText}>{section.type}</Text>
-        )}
-        ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
-        SectionSeparatorComponent={() => <View style={{ height: 16 }}></View>}
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={setName}
+        placeholder="Enter your name"
       />
+      <Text style={styles.text}>My name is {name} </Text>
     </SafeAreaView>
   );
 };
@@ -62,35 +22,17 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  ScrollView: {
-    paddingHorizontal: 16,
+    backgroundColor: '#fff',
   },
 
-  card: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 8,
+  text: {
+    fontSize: 30,
+    padding: 10,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    padding: 10,
     borderWidth: 1,
-    // marginBottom: 16,
-  },
-  cardText: {
-    fontSize: 25,
-  },
-  textPokemon: {
-    fontSize: 35,
-    paddingVertical: 10,
-    textAlign: 'center',
-  },
-  emptyText: {
-    fontSize: 25,
-    textAlign: 'center',
-    paddingVertical: 20,
-  },
-  sectionHeaderText: {
-    backgroundColor: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });

@@ -15,13 +15,11 @@ const App = () => {
         placeholder="Enter your name"
       />
       <Text style={styles.text}>My name is {name} </Text>
+
       <TextInput
-        style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        placeholder="Enter your password"
-        // keyboardType="decimal-pad"
-        secureTextEntry={true}
+        style={[styles.input, styles.multilineText]}
+        placeholder="message"
+        multiline
       />
     </SafeAreaView>
   );
@@ -44,5 +42,9 @@ const styles = StyleSheet.create({
     margin: 12,
     padding: 10,
     borderWidth: 1,
+  },
+  multilineText: {
+    minHeight: 100,
+    textAlignVertical: 'top',
   },
 });

@@ -14,9 +14,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const App = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let errors = {};
+    if (!name) errors.name = 'Username is required';
+    if (!password) errors.password = 'Password is required';
+
+    setErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
 
   const onSubmit = () => {
-    console.log(`Name: ${name} , Password: ${password} `);
+    if (validateForm()) {
+      console.log(`Submitted ${name} , ${password} `);
+      setName('');
+      setPassword('');
+      setErrors({});
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -36,6 +52,9 @@ const App = () => {
           style={styles.input}
           placeholder="enter your username"
         />
+        {errors.name ? (
+          <Text style={styles.errorText}>{errors.name}</Text>
+        ) : null}
         <Text style={styles.label}>Password</Text>
         <TextInput
           value={password}
@@ -44,6 +63,9 @@ const App = () => {
           placeholder="enter your password"
           secureTextEntry
         />
+        {errors.password ? (
+          <Text style={styles.errorText}>{errors.password}</Text>
+        ) : null}
 
         <Button title="Submit" onPress={onSubmit} />
       </KeyboardAvoidingView>
@@ -81,8 +103,12 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 200,
-    height: 400,
+    height: 200,
     alignSelf: 'center',
     marginBottom: 50,
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
   },
 });

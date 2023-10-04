@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
   const [postList, setPostList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async (limit = 10) => {
     const response = await fetch(
@@ -11,12 +19,22 @@ const App = () => {
     );
     const data = await response.json();
     setPostList(data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(postList);
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listContainer}>
@@ -78,5 +96,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginTop: 12,
+  },
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

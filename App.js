@@ -1,74 +1,46 @@
-import { useState } from 'react';
-import {
-  Button,
-  Image,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Platform,
-} from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  const [postList, setPostList] = useState([]);
 
-  const validateForm = () => {
-    let errors = {};
-    if (!name) errors.name = 'Username is required';
-    if (!password) errors.password = 'Password is required';
-
-    setErrors(errors);
-
-    return Object.keys(errors).length === 0;
+  const fetchData = async (limit = 10) => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
+    );
+    const data = await response.json();
+    setPostList(data);
   };
 
-  const onSubmit = () => {
-    if (validateForm()) {
-      console.log(`Submitted ${name} , ${password} `);
-      setName('');
-      setPassword('');
-      setErrors({});
-    }
-  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log(postList);
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior="padding"
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
-        style={styles.form}
-      >
-        <Image
-          style={styles.image}
-          source={require('./assets/adaptive-icon.png')}
-        />
-        <Text style={styles.label}>Username</Text>
-        <TextInput
-          value={name}
-          onChangeText={setName}
-          style={styles.input}
-          placeholder="enter your username"
-        />
-        {errors.name ? (
-          <Text style={styles.errorText}>{errors.name}</Text>
-        ) : null}
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          style={styles.input}
-          placeholder="enter your password"
-          secureTextEntry
-        />
-        {errors.password ? (
-          <Text style={styles.errorText}>{errors.password}</Text>
-        ) : null}
+      <View style={styles.listContainer}>
+        <Text>Fetch API</Text>
 
-        <Button title="Submit" onPress={onSubmit} />
-      </KeyboardAvoidingView>
+        <FlatList
+          data={postList}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.card}>
+                {/* <Text>{item.id}</Text> */}
+                <Text style={styles.cardtitle}>{item.title}</Text>
+                <Text style={styles.cardbody}>{item.body}</Text>
+              </View>
+            );
+          }}
+          ItemSeparatorComponent={() => {
+            return <View style={{ height: 16 }} />;
+          }}
+          ListEmptyComponent={<Text>No Posts Found</Text>}
+          ListHeaderComponent={<Text style={styles.headerText}>Post List</Text>}
+          ListFooterComponent={<Text style={styles.footer}>End of List </Text>}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -78,37 +50,33 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
     backgroundColor: '#f5f5f5',
   },
-  form: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 10,
-    elevation: 6,
+  listContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
   },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-    fontWeight: 'bold',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ddd',
+  card: {
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 8,
     borderWidth: 1,
-    marginBottom: 15,
-    padding: 10,
-    borderRadius: 5,
   },
-  image: {
-    width: 200,
-    height: 200,
-    alignSelf: 'center',
-    marginBottom: 50,
+  cardtitle: {
+    fontSize: 30,
   },
-  errorText: {
-    color: 'red',
-    marginBottom: 10,
+  cardbody: {
+    fontSize: 24,
+    color: '#666666',
+  },
+  headerText: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  footer: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginTop: 12,
   },
 });

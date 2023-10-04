@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const App = () => {
   const [postList, setPostList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const fetchData = async (limit = 10) => {
     const response = await fetch(
@@ -25,6 +26,12 @@ const App = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    fetchData(20);
+    setRefreshing(false);
+  };
 
   if (isLoading) {
     return (
@@ -45,7 +52,7 @@ const App = () => {
           renderItem={({ item }) => {
             return (
               <View style={styles.card}>
-                {/* <Text>{item.id}</Text> */}
+                <Text>{item.id}</Text>
                 <Text style={styles.cardtitle}>{item.title}</Text>
                 <Text style={styles.cardbody}>{item.body}</Text>
               </View>
@@ -57,6 +64,8 @@ const App = () => {
           ListEmptyComponent={<Text>No Posts Found</Text>}
           ListHeaderComponent={<Text style={styles.headerText}>Post List</Text>}
           ListFooterComponent={<Text style={styles.footer}>End of List </Text>}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
         />
       </View>
     </SafeAreaView>

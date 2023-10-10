@@ -17,6 +17,9 @@ export default function App() {
           name="About"
           component={AboutScreen}
           options={{ headerTitleAlign: 'center' }}
+          initialParams={{
+            name: 'Guest',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

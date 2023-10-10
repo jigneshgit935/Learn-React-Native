@@ -1,13 +1,14 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>HomeScreen</Text>
+      <Text style={styles.text}>Data: {route.params?.newName}</Text>
       <Button
         title="Go to About"
-        onPress={() => navigation.navigate('About')}
+        onPress={() => navigation.navigate('About', { name: 'Jinu', age: 23 })}
       />
     </View>
   );

@@ -9,12 +9,12 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="home">
         <Stack.Screen
-          name="home"
+          name="Home"
           component={HomeScreen}
           options={{ headerTitleAlign: 'center' }}
         />
         <Stack.Screen
-          name="about"
+          name="About"
           component={AboutScreen}
           options={{ headerTitleAlign: 'center' }}
         />

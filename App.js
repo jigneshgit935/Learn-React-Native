@@ -1,38 +1,45 @@
-import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import DashboardScreen from './Screens/DashboardScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import CourseListScreen from './Screens/CourseListScreen';
+import ProfileScreen from './Screens/ProfileScreen';
 import SettingsScreen from './Screens/SettingsScreen';
-
-const Drawer = createDrawerNavigator();
+import Ionicons from '@expo/vector-icons/Ionicons';
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen
-          name="Dashboard"
-          component={DashboardScreen}
+      <Tab.Navigator
+        screenOptions={{
+          tabBarLabelPosition: 'beside-icon',
+          tabBarShowLabel: true,
+          tabBarActiveTintColor: 'purple',
+          tabBarInactiveTintColor: 'green',
+        }}
+      >
+        <Tab.Screen
+          name="Course List"
+          component={CourseListScreen}
+          options={{ headerTitleAlign: 'center' }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
           options={{
             headerTitleAlign: 'center',
-            title: 'My Dashboard',
-            drawerLabel: 'Dashboard label',
-            drawerActiveTintColor: '#333',
-            drawerActiveBackgroundColor: 'lightblue',
-            drawerContentStyle: {
-              backgroundColor: '#c6cbef',
-            },
+            tabBarLabel: 'My Profile',
+            tabBarBadge: 3,
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="person" size={20} color={color} />
+            ),
           }}
         />
-        <Drawer.Screen
-          name="Setttings"
+        <Tab.Screen
+          name="Settings"
           component={SettingsScreen}
-          options={{
-            headerTitleAlign: 'center',
-            title: 'My Settings',
-          }}
+          options={{ headerTitleAlign: 'center' }}
         />
-      </Drawer.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

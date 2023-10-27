@@ -1,20 +1,19 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-
-const HomeScreen = ({ navigation, route }) => {
+const DashboardScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>HomeScreen</Text>
-      <Text style={styles.text}>Data: {route.params?.newName}</Text>
+      <Text style={styles.text}>DashboardScreen</Text>
+      <Button title="Toggle Drawer" onPress={() => navigation.toggleDrawer()} />
       <Button
-        title="Go to About"
-        onPress={() => navigation.navigate('About', { name: 'Jinu', age: 23 })}
+        title="Setttings"
+        onPress={() => navigation.jumpTo('Setttings')}
       />
     </View>
   );
 };
 
-export default HomeScreen;
+export default DashboardScreen;
 
 const styles = StyleSheet.create({
   container: {

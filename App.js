@@ -1,27 +1,38 @@
+import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './Screens/HomeScreen';
-import AboutScreen from './Screens/AboutScreen';
-export default function App() {
-  const Stack = createNativeStackNavigator();
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import DashboardScreen from './Screens/DashboardScreen';
+import SettingsScreen from './Screens/SettingsScreen';
 
+const Drawer = createDrawerNavigator();
+
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerTitleAlign: 'center' }}
-        />
-        <Stack.Screen
-          name="About"
-          component={AboutScreen}
-          options={{ headerTitleAlign: 'center' }}
-          initialParams={{
-            name: 'Guest',
+      <Drawer.Navigator>
+        <Drawer.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{
+            headerTitleAlign: 'center',
+            title: 'My Dashboard',
+            drawerLabel: 'Dashboard label',
+            drawerActiveTintColor: '#333',
+            drawerActiveBackgroundColor: 'lightblue',
+            drawerContentStyle: {
+              backgroundColor: '#c6cbef',
+            },
           }}
         />
-      </Stack.Navigator>
+        <Drawer.Screen
+          name="Setttings"
+          component={SettingsScreen}
+          options={{
+            headerTitleAlign: 'center',
+            title: 'My Settings',
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

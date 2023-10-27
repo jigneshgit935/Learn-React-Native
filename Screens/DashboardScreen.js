@@ -2,6 +2,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 const DashboardScreen = ({ navigation }) => {
   return (
+    //
     <View style={styles.container}>
       <Text style={styles.text}>DashboardScreen</Text>
       <Button title="Toggle Drawer" onPress={() => navigation.toggleDrawer()} />
